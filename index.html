@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hoopoe Digital — WiFi on the Go</title>
+<meta name="description" content="Hoopoe Digital — Pocket WiFi, eSIM, and managed connectivity for travelers, teams, and venues. Stay online anywhere." />
+<link rel="icon" href="hoopoe-digital-logo.jpeg" />
+<style>
+  /* ---------- Design tokens (from DESIGN_GUIDE.md) ---------- */
+  :root{
+    --orange:#D1824F;
+    --orange-deep:#CE8345;
+    --orange-mid:#EA9F68;
+    --orange-light:#FACEA3;
+    --brown:#A5462A;
+    --navy:#252A35;
+    --gray-100:#E8E3E1;
+    --white:#fff;
+    --success:#2F7D5B;
+    --radius-sm:4px; --radius-md:8px; --radius-lg:16px;
+    --shadow-1:0 1px 2px rgba(37,42,53,.06);
+    --shadow-2:0 4px 12px rgba(37,42,53,.08);
+    --shadow-3:0 12px 32px rgba(37,42,53,.12);
+    --max:1200px;
+    --sans: "Thmanyah Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --serif: "Thmanyah Serif Display", Georgia, "Times New Roman", serif;
+  }
+
+  /* ---------- Local fonts (from /fonts in repo) ---------- */
+  @font-face{
+    font-family:"Thmanyah Sans"; font-style:normal; font-weight:400;
+    src:url("fonts/thmanyah-sans/Thmanyahsans12-Regular.otf") format("opentype");
+    font-display:swap;
+  }
+  @font-face{
+    font-family:"Thmanyah Sans"; font-style:normal; font-weight:500;
+    src:url("fonts/thmanyah-sans/Thmanyahsans12-Medium.otf") format("opentype");
+    font-display:swap;
+  }
+  @font-face{
+    font-family:"Thmanyah Sans"; font-style:normal; font-weight:700;
+    src:url("fonts/thmanyah-sans/Thmanyahsans12-Bold.otf") format("opentype");
+    font-display:swap;
+  }
+  @font-face{
+    font-family:"Thmanyah Sans"; font-style:normal; font-weight:900;
+    src:url("fonts/thmanyah-sans/Thmanyahsans12-Black.otf") format("opentype");
+    font-display:swap;
+  }
+  @font-face{
+    font-family:"Thmanyah Serif Display"; font-style:normal; font-weight:400;
+    src:url("fonts/thmanyah-serif-display/Thmanyahserifdisplay12-Reg.otf") format("opentype");
+    font-display:swap;
+  }
+  @font-face{
+    font-family:"Thmanyah Serif Display"; font-style:normal; font-weight:700;
+    src:url("fonts/thmanyah-serif-display/Thmanyahserifdisplay12-Bold.otf") format("opentype");
+    font-display:swap;
+  }
+  @font-face{
+    font-family:"Thmanyah Serif Display"; font-style:normal; font-weight:900;
+    src:url("fonts/thmanyah-serif-display/Thmanyahserifdisplay12-Black.otf") format("opentype");
+    font-display:swap;
+  }
+
+  /* ---------- Reset / base ---------- */
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; font-family:var(--sans); color:var(--navy);
+    background:var(--white); line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block}
+  a{color:var(--orange-deep); text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  h1,h2,h3{font-family:var(--serif); color:var(--navy); line-height:1.15; margin:0 0 .5em}
+  h1{font-size:clamp(2.25rem, 5vw, 4rem); font-weight:900; letter-spacing:-.01em}
+  h2{font-size:clamp(1.75rem, 3.2vw, 2.5rem); font-weight:700}
+  h3{font-size:1.25rem; font-weight:700; font-family:var(--sans)}
+  p{margin:0 0 1rem}
+
+  .container{max-width:var(--max); margin-inline:auto; padding-inline:24px}
+  .eyebrow{
+    display:inline-block; font-size:.75rem; font-weight:700;
+    text-transform:uppercase; letter-spacing:.12em;
+    color:var(--orange-deep); margin-bottom:1rem;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex; align-items:center; gap:.5rem;
+    height:44px; padding:0 22px; border-radius:var(--radius-md);
+    font-family:var(--sans); font-weight:700; font-size:.95rem;
+    border:1.5px solid transparent; cursor:pointer; transition:transform .15s ease, box-shadow .2s ease, background .2s ease;
+    text-decoration:none;
+  }
+  .btn-primary{background:var(--orange); color:var(--navy)}
+  .btn-primary:hover{background:var(--orange-mid); transform:translateY(-1px); box-shadow:var(--shadow-2); text-decoration:none}
+  .btn-secondary{background:transparent; color:var(--navy); border-color:var(--navy)}
+  .btn-secondary:hover{background:var(--navy); color:var(--white); text-decoration:none}
+  .btn-ghost{background:transparent; color:var(--white); border-color:rgba(255,255,255,.4)}
+  .btn-ghost:hover{background:rgba(255,255,255,.1); text-decoration:none}
+
+  /* ---------- Header ---------- */
+  .site-header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,255,255,.9); backdrop-filter:saturate(140%) blur(8px);
+    border-bottom:1px solid var(--gray-100);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    height:72px;
+  }
+  .brand{display:flex; align-items:center; gap:.6rem; color:var(--navy); font-weight:900; font-family:var(--serif); font-size:1.25rem; letter-spacing:.02em}
+  .brand img{width:36px; height:36px; object-fit:contain}
+  .brand small{font-family:var(--sans); font-size:.6rem; letter-spacing:.2em; color:var(--orange-deep); display:block; line-height:1}
+  .nav-links{display:flex; gap:1.75rem; align-items:center}
+  .nav-links a{color:var(--navy); font-weight:500; font-size:.95rem}
+  .nav-links a:hover{color:var(--orange-deep); text-decoration:none}
+  @media (max-width:780px){ .nav-links a:not(.btn){display:none} }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative; overflow:hidden;
+    padding:96px 0 120px;
+    background:
+      radial-gradient(1000px 500px at 85% -10%, var(--orange-light) 0%, transparent 60%),
+      linear-gradient(180deg, #fff 0%, #fff 70%, var(--gray-100) 100%);
+  }
+  .hero-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:48px; align-items:center}
+  @media (max-width:900px){ .hero-grid{grid-template-columns:1fr} }
+  .hero h1 span{color:var(--orange-deep)}
+  .hero p.lead{font-size:1.2rem; max-width:560px; color:#3a4150}
+  .hero-cta{display:flex; gap:.75rem; flex-wrap:wrap; margin-top:1.5rem}
+
+  /* dotted constellation motif */
+  .constellation{
+    position:absolute; inset:auto -80px -80px auto;
+    width:520px; height:520px; pointer-events:none; opacity:.55;
+    background-image: radial-gradient(var(--orange) 1.4px, transparent 1.6px);
+    background-size:18px 18px;
+    -webkit-mask-image: radial-gradient(closest-side, #000 30%, transparent 75%);
+            mask-image: radial-gradient(closest-side, #000 30%, transparent 75%);
+  }
+
+  .hero-card{
+    position:relative; background:var(--white); border-radius:var(--radius-lg);
+    padding:28px; box-shadow:var(--shadow-3); border:1px solid var(--gray-100);
+  }
+  .hero-card::before{
+    content:""; position:absolute; inset:0 0 auto 0; height:4px;
+    background:var(--orange); border-radius:var(--radius-lg) var(--radius-lg) 0 0;
+  }
+  .stat-row{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:1rem}
+  .stat{padding:16px; background:var(--gray-100); border-radius:var(--radius-md)}
+  .stat b{display:block; font-family:var(--serif); font-size:1.8rem; color:var(--navy); line-height:1}
+  .stat span{font-size:.78rem; color:#5a6273}
+
+  /* ---------- Section base ---------- */
+  section{padding:96px 0}
+  .section-head{max-width:720px; margin:0 auto 56px; text-align:center}
+  .section-head p{color:#5a6273; font-size:1.1rem}
+
+  /* ---------- Products ---------- */
+  .products{background:var(--white)}
+  .product-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:24px}
+  @media (max-width:980px){ .product-grid{grid-template-columns:1fr 1fr} }
+  @media (max-width:640px){ .product-grid{grid-template-columns:1fr} }
+  .card{
+    background:var(--white); border:1px solid var(--gray-100);
+    border-radius:var(--radius-lg); padding:28px; box-shadow:var(--shadow-1);
+    display:flex; flex-direction:column; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    position:relative; overflow:hidden;
+  }
+  .card:hover{transform:translateY(-4px); box-shadow:var(--shadow-3); border-color:var(--orange-light)}
+  .card .icon{
+    width:52px; height:52px; border-radius:12px;
+    background:var(--orange-light); color:var(--brown);
+    display:grid; place-items:center; margin-bottom:1rem;
+  }
+  .card .icon svg{width:26px; height:26px; stroke:currentColor; fill:none; stroke-width:1.8}
+  .card h3{font-family:var(--serif); font-size:1.4rem; font-weight:700}
+  .card p{color:#5a6273; flex:1}
+  .card ul{padding:0; margin:0 0 1rem; list-style:none; font-size:.92rem; color:#3a4150}
+  .card ul li{padding:.35rem 0; padding-left:1.4rem; position:relative}
+  .card ul li::before{
+    content:""; position:absolute; left:0; top:.85rem;
+    width:8px; height:8px; border-radius:50%; background:var(--orange);
+  }
+  .card .price{font-family:var(--serif); font-size:1.5rem; color:var(--navy); margin-top:auto}
+  .card .price small{font-family:var(--sans); font-size:.8rem; color:#5a6273; font-weight:500}
+
+  .featured{border-color:var(--orange)}
+  .featured::after{
+    content:"Most popular"; position:absolute; top:16px; right:16px;
+    background:var(--navy); color:#fff; font-size:.7rem; font-weight:700;
+    padding:4px 10px; border-radius:9999px; letter-spacing:.08em; text-transform:uppercase;
+  }
+
+  /* ---------- Features strip ---------- */
+  .features{background:var(--gray-100)}
+  .feature-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:24px}
+  @media (max-width:900px){ .feature-grid{grid-template-columns:1fr 1fr} }
+  .feature{padding:24px; background:var(--white); border-radius:var(--radius-md); box-shadow:var(--shadow-1)}
+  .feature h3{font-size:1rem; margin-bottom:.25rem}
+  .feature p{font-size:.9rem; color:#5a6273; margin:0}
+  .feature .num{
+    font-family:var(--serif); font-size:1.6rem; font-weight:900; color:var(--orange-deep);
+  }
+
+  /* ---------- CTA band ---------- */
+  .cta-band{
+    background:var(--navy); color:#fff; padding:80px 0; position:relative; overflow:hidden;
+  }
+  .cta-band::before{
+    content:""; position:absolute; inset:0;
+    background-image: radial-gradient(rgba(209,130,79,.55) 1.2px, transparent 1.4px);
+    background-size:22px 22px;
+    -webkit-mask-image: radial-gradient(ellipse at 80% 50%, #000 0%, transparent 60%);
+            mask-image: radial-gradient(ellipse at 80% 50%, #000 0%, transparent 60%);
+    opacity:.7; pointer-events:none;
+  }
+  .cta-band .container{position:relative; display:flex; justify-content:space-between; align-items:center; gap:32px; flex-wrap:wrap}
+  .cta-band h2{color:#fff; margin:0; max-width:640px}
+  .cta-band p{color:rgba(255,255,255,.75); margin:.5rem 0 0; max-width:560px}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--white); padding:64px 0 24px; border-top:1px solid var(--gray-100)}
+  .foot-grid{display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:32px; margin-bottom:48px}
+  @media (max-width:800px){ .foot-grid{grid-template-columns:1fr 1fr} }
+  footer h4{font-family:var(--sans); font-size:.75rem; text-transform:uppercase; letter-spacing:.12em; color:var(--navy); margin:0 0 1rem}
+  footer ul{padding:0; margin:0; list-style:none}
+  footer ul li{margin-bottom:.5rem}
+  footer ul a{color:#5a6273; font-size:.92rem}
+  footer ul a:hover{color:var(--orange-deep)}
+  .copyright{
+    border-top:1px solid var(--gray-100); padding-top:24px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+    font-size:.82rem; color:#5a6273;
+  }
+  .orange-band{height:8px; background:var(--orange)}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="#" class="brand" aria-label="Hoopoe Digital home">
+      <img src="hoopoe-digital-logo.jpeg" alt="" />
+      <span>HOOPOE<small>DIGITAL</small></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#products">Products</a>
+      <a href="#features">Why us</a>
+      <a href="#coverage">Coverage</a>
+      <a href="#contact">Contact</a>
+      <a href="#products" class="btn btn-primary">Get connected</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="constellation" aria-hidden="true"></div>
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">Connectivity, anywhere</span>
+      <h1>WiFi on the <span>Go.</span><br/>Stay online, everywhere you fly.</h1>
+      <p class="lead">
+        Hoopoe Digital delivers pocket WiFi, global eSIMs, and managed connectivity for
+        travelers, remote teams, and venues — fast setup, fair pricing, zero surprises.
+      </p>
+      <div class="hero-cta">
+        <a href="#products" class="btn btn-primary">Explore products →</a>
+        <a href="#contact" class="btn btn-secondary">Talk to sales</a>
+      </div>
+    </div>
+    <aside class="hero-card" aria-label="Quick highlights">
+      <h3 style="font-family:var(--serif); font-size:1.25rem">Trusted by travelers in 190+ countries</h3>
+      <p style="color:#5a6273; font-size:.95rem">Plug-and-play devices, instant eSIM activation, and 24/7 support — built on the same network operators that power global roaming.</p>
+      <div class="stat-row">
+        <div class="stat"><b>190+</b><span>Countries</span></div>
+        <div class="stat"><b>4G/5G</b><span>Networks</span></div>
+        <div class="stat"><b>24/7</b><span>Support</span></div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ PRODUCTS ============ -->
+<section id="products" class="products">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Our products</span>
+      <h2>Everything you need to stay connected</h2>
+      <p>From handheld hotspots to enterprise-grade venue WiFi, pick the Hoopoe solution that matches the way you travel and work.</p>
+    </div>
+
+    <div class="product-grid">
+
+      <article class="card">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="3"/><circle cx="12" cy="17" r="1.2" fill="currentColor" stroke="none"/><path d="M8 8h8M8 11h8"/></svg>
+        </div>
+        <h3>Pocket WiFi</h3>
+        <p>A portable 4G/5G hotspot that fits in your pocket. Connect up to 10 devices, all day battery, and unlimited data plans across 190+ countries.</p>
+        <ul>
+          <li>Up to 10 simultaneous devices</li>
+          <li>12-hour battery life</li>
+          <li>Day, week & monthly rentals</li>
+        </ul>
+        <div class="price">From $4.90 <small>/ day</small></div>
+      </article>
+
+      <article class="card featured">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M5 7c4-4 10-4 14 0M8 10c2.5-2.5 5.5-2.5 8 0M11 13c.8-.8 1.2-.8 2 0"/><circle cx="12" cy="18" r="1.4" fill="currentColor" stroke="none"/></svg>
+        </div>
+        <h3>Global eSIM</h3>
+        <p>Instant data plans delivered to your phone in seconds. No physical SIM, no roaming fees, no shop visits — just scan the QR code and connect.</p>
+        <ul>
+          <li>Activates in under 60 seconds</li>
+          <li>Regional & global bundles</li>
+          <li>Top-up anytime from the app</li>
+        </ul>
+        <div class="price">From $2.50 <small>/ GB</small></div>
+      </article>
+
+      <article class="card">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 17V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M9 21h6"/></svg>
+        </div>
+        <h3>Venue & Event WiFi</h3>
+        <p>Managed WiFi for hotels, conferences, and pop-ups. We design, install, and operate the network so your guests just press "connect" and it works.</p>
+        <ul>
+          <li>Captive portal & branding</li>
+          <li>Up to 5,000 concurrent users</li>
+          <li>Real-time analytics dashboard</li>
+        </ul>
+        <div class="price">Custom <small>quote</small></div>
+      </article>
+
+      <article class="card">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+        </div>
+        <h3>Roaming SIM Cards</h3>
+        <p>Physical multi-country SIM cards for the long-haul traveler. One number, dozens of regions, one bill.</p>
+        <ul>
+          <li>Voice, SMS & data</li>
+          <li>Pay-as-you-go or bundles</li>
+          <li>Free incoming calls in 100+ countries</li>
+        </ul>
+        <div class="price">From $19 <small>/ SIM</small></div>
+      </article>
+
+      <article class="card">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 12l9 4 9-4M3 17l9 4 9-4"/></svg>
+        </div>
+        <h3>Business Connectivity</h3>
+        <p>Centralized data plans, device management, and consolidated billing for distributed teams and field workforces.</p>
+        <ul>
+          <li>Admin console & user roles</li>
+          <li>Pooled data across employees</li>
+          <li>SLA-backed uptime</li>
+        </ul>
+        <div class="price">From $29 <small>/ user / mo</small></div>
+      </article>
+
+      <article class="card">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/></svg>
+        </div>
+        <h3>IoT & M2M Data</h3>
+        <p>Reliable cellular connectivity for sensors, kiosks, vehicles, and fleets — global SIMs with a single API.</p>
+        <ul>
+          <li>Multi-network failover</li>
+          <li>REST API & webhooks</li>
+          <li>Per-device usage controls</li>
+        </ul>
+        <div class="price">From $1.50 <small>/ device / mo</small></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section id="features" class="features">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Why Hoopoe</span>
+      <h2>Built for people on the move</h2>
+      <p>Like the hoopoe — King Solomon's messenger — we carry your signal wherever you go.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature"><div class="num">01</div><h3>Instant setup</h3><p>From order to online in minutes, not days. Scan a QR or unbox and power on.</p></div>
+      <div class="feature"><div class="num">02</div><h3>Fair, flat pricing</h3><p>No roaming surprises. Pay daily, weekly, or monthly with clear caps.</p></div>
+      <div class="feature"><div class="num">03</div><h3>Global coverage</h3><p>Tier-1 carrier partners across 190+ countries with automatic failover.</p></div>
+      <div class="feature"><div class="num">04</div><h3>Human support</h3><p>Real people, 24/7, in chat and on the phone — wherever you land.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BAND ============ -->
+<section id="coverage" class="cta-band">
+  <div class="container">
+    <div>
+      <h2>Ready to take off?</h2>
+      <p>Order a Pocket WiFi or activate your eSIM in under a minute. Free shipping on weekly+ rentals.</p>
+    </div>
+    <div style="display:flex; gap:.75rem; flex-wrap:wrap">
+      <a class="btn btn-primary" href="#products">Shop products</a>
+      <a class="btn btn-ghost" href="#contact">Contact sales</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer id="contact">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a href="#" class="brand"><img src="hoopoe-digital-logo.jpeg" alt=""/><span>HOOPOE<small>DIGITAL</small></span></a>
+        <p style="color:#5a6273; font-size:.92rem; max-width:340px; margin-top:1rem">
+          Hoopoe Digital LLC — pocket WiFi, eSIM, and managed connectivity for the modern traveler.
+        </p>
+      </div>
+      <div>
+        <h4>Products</h4>
+        <ul>
+          <li><a href="#products">Pocket WiFi</a></li>
+          <li><a href="#products">Global eSIM</a></li>
+          <li><a href="#products">Venue WiFi</a></li>
+          <li><a href="#products">IoT Data</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#features">Why Hoopoe</a></li>
+          <li><a href="#coverage">Coverage</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:info@hoopoe.digital">info@hoopoe.digital</a></li>
+          <li><a href="https://www.hoopoe.digital">www.hoopoe.digital</a></li>
+          <li>New Cairo, Egypt</li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>© <span id="yr"></span> Hoopoe Digital. All rights reserved.</span>
+      <span>Made with care · WiFi on the Go!</span>
+    </div>
+  </div>
+  <div class="orange-band" aria-hidden="true" style="margin-top:24px"></div>
+</footer>
+
+<script>document.getElementById("yr").textContent = new Date().getFullYear();</script>
+</body>
+</html>
