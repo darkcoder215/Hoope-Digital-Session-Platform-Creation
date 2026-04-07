@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============ Thmanyah fonts (from /public/fonts) ============ */
+@font-face{font-family:"Thmanyah Sans";font-style:normal;font-weight:400;src:url("/fonts/thmanyah-sans/Thmanyahsans12-Regular.otf") format("opentype");font-display:swap}
+@font-face{font-family:"Thmanyah Sans";font-style:normal;font-weight:500;src:url("/fonts/thmanyah-sans/Thmanyahsans12-Medium.otf") format("opentype");font-display:swap}
+@font-face{font-family:"Thmanyah Sans";font-style:normal;font-weight:700;src:url("/fonts/thmanyah-sans/Thmanyahsans12-Bold.otf") format("opentype");font-display:swap}
+@font-face{font-family:"Thmanyah Sans";font-style:normal;font-weight:900;src:url("/fonts/thmanyah-sans/Thmanyahsans12-Black.otf") format("opentype");font-display:swap}
+@font-face{font-family:"Thmanyah Serif Display";font-style:normal;font-weight:400;src:url("/fonts/thmanyah-serif-display/Thmanyahserifdisplay12-Reg.otf") format("opentype");font-display:swap}
+@font-face{font-family:"Thmanyah Serif Display";font-style:normal;font-weight:700;src:url("/fonts/thmanyah-serif-display/Thmanyahserifdisplay12-Bold.otf") format("opentype");font-display:swap}
+@font-face{font-family:"Thmanyah Serif Display";font-style:normal;font-weight:900;src:url("/fonts/thmanyah-serif-display/Thmanyahserifdisplay12-Black.otf") format("opentype");font-display:swap}
+
+@layer base {
+  html, body, #root { height: 100%; }
+  body {
+    @apply bg-bg-deep text-text-mid font-sans antialiased;
+    background-image: radial-gradient(rgba(255,255,255,.04) 1px, transparent 1.2px);
+    background-size: 22px 22px;
+  }
+  h1, h2, h3, h4 { @apply font-serif text-text-hi; }
+  h1 { @apply text-4xl font-black tracking-tight; }
+  h2 { @apply text-2xl font-bold; }
+  h3 { @apply text-lg font-bold; }
+  *:focus-visible { @apply outline-none ring-2 ring-brand-orange ring-offset-2 ring-offset-bg-deep; }
+  ::selection { background: rgba(243,156,42,.35); color: #fff; }
+}
+
+@layer components {
+  .card {
+    @apply relative bg-bg-surface border border-stroke rounded-lg p-6 transition-all duration-200;
+  }
+  .card::before {
+    content: "";
+    @apply absolute inset-x-0 top-0 h-[3px] rounded-t-lg;
+    background: var(--accent, #F39C2A);
+    opacity: .85;
+  }
+  .card-hover:hover {
+    @apply -translate-y-1 shadow-card;
+    border-color: var(--accent, #F39C2A);
+  }
+  .chip {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-white/5 border border-stroke text-text-mid;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 h-10 px-5 rounded-sm font-bold text-sm border border-transparent transition-all whitespace-nowrap cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply bg-brand-orange text-bg-deep hover:shadow-glow;
+  }
+  .btn-ghost {
+    @apply bg-transparent text-text-hi border-stroke hover:border-brand-orange hover:text-brand-orange;
+  }
+  .btn-danger {
+    @apply bg-acc-red/20 text-acc-red border-acc-red/40 hover:bg-acc-red/30;
+  }
+  .input {
+    @apply w-full h-10 px-3 rounded-sm bg-bg-surface border border-stroke text-text-hi text-sm placeholder:text-text-low focus:border-brand-orange focus:outline-none focus:ring-2 focus:ring-brand-orange/20;
+  }
+  .label {
+    @apply block text-xs uppercase tracking-wider text-text-mid font-semibold mb-1.5;
+  }
+  .eyebrow {
+    @apply inline-block text-[11px] font-bold uppercase tracking-widest text-brand-orange mb-3;
+  }
+}
+
+/* Module accents — set --accent on module root to color cards & icons */
+.mod-people    { --accent: #6FE36A; }
+.mod-timeoff   { --accent: #E45BCB; }
+.mod-attendance{ --accent: #4FD3E3; }
+.mod-ats       { --accent: #F4D03F; }
+.mod-dashboard { --accent: #F39C2A; }
