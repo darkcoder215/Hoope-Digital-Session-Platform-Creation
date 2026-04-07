@@ -1,8 +1,15 @@
 # Hoopoe Digital — UX/UI Design Guide
 
-A practical design system distilled from the official **Hoopoe Digital Brand Manual (2019)** and the
-brand assets included in this repository. Use this as the single source of truth for all product,
-web, and marketing UI work going forward.
+A practical design system distilled from the **Hoopoe Digital Brand Manual (2019)** and the
+**HD Company Profile (Sept 2025)**. Single source of truth for all product, web, and marketing
+UI work going forward.
+
+> **Brand evolution note (2025):** Hoopoe has repositioned from a connectivity vendor into the
+> **"World's 1st Smart Wi-Fi Marketplace"** — a Spatial Intelligence platform that turns physical
+> venues into Intelligent Spaces. The classic warm 2019 palette (orange + cream + navy) is still
+> the corporate identity, but the 2025 product expression layers a **dark, neon-accented "Spatial
+> Intelligence" theme** on top for product UIs, dashboards, and futuristic marketing. Both
+> expressions are documented below — pick the one that fits the surface.
 
 ---
 
@@ -10,9 +17,33 @@ web, and marketing UI work going forward.
 
 - **Name:** Hoopoe Digital
 - **Symbol:** A stylized hoopoe bird, inspired by King Solomon's hoopoe — a messenger, a guide, a
-  carrier of wisdom. The mark should always feel natural, warm, and confident.
-- **Voice:** Professional, modern, warm, trustworthy. Avoid stiff/corporate tone; favor clarity.
-- **Tagline (from collateral):** *"WiFi on the Go!"*
+  carrier of wisdom.
+- **Positioning (2025):** *World's 1st Smart Wi-Fi Marketplace.*
+- **Tagline (2025):** *Transforming Physical Venues into Intelligent Spaces.*
+- **Tagline (legacy / connectivity):** *WiFi on the Go!*
+- **Category:** Spatial Intelligence · Smart Wi-Fi · Gen-AI · Digital Twin
+- **Voice:** Visionary but pragmatic. Confident, technical, human. Avoid hype words; lead with
+  outcomes ("turn footfall into revenue", "no app to download"). Mix editorial serifs for ambition
+  with crisp sans for clarity.
+- **Mission cue:** "Wi-Fi is the ideal foundation for spatial intelligence — present in virtually
+  every venue but vastly underutilized beyond basic connectivity."
+
+### Company facts (Sept 2025)
+- **Founded HQ:** Egypt. **EU HQ:** Herengracht 449-A, 1017 BR Amsterdam, Netherlands.
+- **Offices / markets:** Egypt, Netherlands, KSA, UAE, Qatar (UK & Canada in the make).
+- **Scale of impact:** 18 marketplace products · 14K+ AP subscriptions · 50+ venues ·
+  2.5M registered users · 13M+ sessions · 1.6M daily interactions.
+- **Compliance:** GDPR · CCPA · Saudi PDPL · Egypt DPL.
+- **Recognitions:** WITSA Top 14 most innovative startups worldwide (Oct 2024) · AfICTA
+  Innovation Award of the Year (Dec 2024) · CairoICT Top Tech Startup (Nov 2023) · Top-3 Hajj &
+  Umrah Challenge, Al-Madinah (Apr 2025).
+- **Customers:** Amazon, Ooredoo, MARAKEZ (District 5), Mall of Tanta, McDonald's, Burger King,
+  Café Vergnano, Junior's, Al Mana, Sigma 66, RISEUP Summit, Egypt VC Summit, TechForge,
+  Harmont&Blaine, and more.
+- **Strategic partners:** e&, Cequens, VictoryLink, Twilio, Msegat, Paymob, Infobip, Huawei,
+  Ruijie, Cambium Networks, MikroTik, Oracle Micros Symphony, Foodics, Grubtech, POSRocket.
+- **Web:** www.hoopoe.digital · **Email:** info@hoopoe.digital
+- **Social:** facebook/hoopoe.digital.kingdom · X @HoopoeDigital · IG @hoopoe.digital · LinkedIn hoopoe-digital
 
 ---
 
@@ -52,8 +83,19 @@ zone.
 
 ## 3. Color System
 
-The palette is drawn from the natural colors of the hoopoe bird. Use **orange** as the primary
-accent, **dark navy** as the dominant text/background contrast, and the warm neutrals as surfaces.
+Hoopoe runs **two coordinated palettes**:
+
+- **A. Corporate / Editorial palette (2019)** — warm, natural, used for the logo, stationery,
+  marketing print, light marketing web pages, and any "human, trustworthy" surface.
+- **B. Spatial Intelligence palette (2025)** — dark, neon, used for product UI, dashboards,
+  pitch decks, futuristic hero sections and anything that says "AI / data / spatial".
+
+Both palettes share the same brand orange so the bird mark always feels at home.
+
+### A. Corporate / Editorial palette
+
+Drawn from the natural colors of the hoopoe bird. Orange is the primary accent, dark navy is the
+dominant text/background contrast, warm neutrals are surfaces.
 
 ### Core palette
 
@@ -93,6 +135,48 @@ backgrounds — exactly as specified in the manual.
 | White on Navy `#252A35` | 13.8:1 | ✅ AAA |
 
 **CTA recommendation:** Background `#D1824F`, label `#252A35`, **bold weight**.
+
+### B. Spatial Intelligence palette (2025 product expression)
+
+A near-black canvas with a faint dotted grid, lit by category-coded neon accents. Each Hoopoe
+**product line** owns one neon color so users instantly recognize where they are.
+
+| Token | Name | HEX | Role |
+|---|---|---|---|
+| `--bg-deep` | Deep Space | `#0A0E14` | App / page background |
+| `--bg-surface` | Surface | `#11161F` | Cards, panels |
+| `--bg-elevated` | Elevated | `#1A2230` | Modals, popovers, hover |
+| `--stroke` | Stroke | `#2A3344` | Borders, dividers, dot grid |
+| `--text-hi` | Text High | `#F2F4F8` | Headings, primary text on dark |
+| `--text-mid` | Text Mid | `#A8B0BE` | Body text on dark |
+| `--text-low` | Text Low | `#6B7385` | Captions, hints |
+| `--accent-orange` | **Brand Orange** *(shared with palette A)* | `#F39C2A` | Cross-brand accent, primary CTA on dark, hoopoe mark |
+| `--accent-green` | Smart-Services Green | `#6FE36A` | Wi-Fi Smart Services (B2B) |
+| `--accent-magenta` | Instant-Apps Magenta | `#E45BCB` | Wi-Fi Instant Apps (B2B2C) |
+| `--accent-cyan` | BI Cyan | `#4FD3E3` | Wi-Fi Business Intelligence |
+| `--accent-yellow` | Ad-Manager Yellow | `#F4D03F` | Location-Intelligent Marketing / Ad Manager |
+| `--accent-red` | Alert Red | `#FF5C5C` | Errors, critical alerts |
+
+**Glow effect (use sparingly):** `box-shadow: 0 0 24px rgba(<accent>, .35), 0 0 1px rgba(<accent>, .8);`
+
+### Color → product mapping (brand law)
+
+| Product line | Accent | Where it appears |
+|---|---|---|
+| Wi-Fi Smart Services | Green `#6FE36A` | Section headers, icons, charts |
+| Wi-Fi Instant Apps | Magenta `#E45BCB` | Section headers, app cards |
+| Wi-Fi Business Intelligence | Cyan `#4FD3E3` | Dashboards, charts |
+| Location-Intelligent Marketing | Yellow `#F4D03F` | Ad Manager, campaign UI |
+| Cross-brand / corporate | Orange `#F39C2A` | Logo, primary CTAs, brand moments |
+
+> Don't mix more than **one product accent** in a single screen unless you're showing the
+> marketplace overview. The orange brand accent may always coexist with one product accent.
+
+### Accessibility on dark
+- Body text: `#A8B0BE` on `#0A0E14` → 9.0:1 ✅
+- Headings: `#F2F4F8` on `#0A0E14` → 16.6:1 ✅
+- Neon accents on `#0A0E14`: cyan / green / yellow all pass AA for ≥18px text and icons. Magenta
+  `#E45BCB` only passes for large text — use it for headlines and icons, not body.
 
 ---
 
@@ -164,12 +248,93 @@ Keep shadows soft and warm-tinted (avoid pure black).
 
 ## 6. Iconography & Imagery
 
-- **Icons:** 24 px grid, 1.5 px stroke, rounded joins. Stroke color = current text color.
-- **Illustration motif:** the manual uses a recurring **constellation / dotted-network pattern in
-  orange** (visible on the business card and letterhead). Reuse it as a decorative background motif
-  for empty states, login screens, and section dividers. Keep at 10–20% opacity.
-- **Photography:** natural light, warm tones, real people, plenty of negative space. Avoid stock-y
-  blue corporate imagery.
+- **Icons:** 24 px grid, 1.5 px stroke, rounded joins. Stroke color = current text color (or the
+  product accent on dark surfaces).
+- **Editorial motif (palette A):** the dotted **constellation / network pattern in orange** from
+  the 2019 stationery. Use at 10–20% opacity for empty states, login screens, dividers.
+- **Spatial Intelligence motif (palette B):** a fine **dot grid** (`18px × 18px`, `#2A3344` on
+  `#0A0E14`) plus **glowing nodes and connection lines** in the active product accent. Used for
+  hero backgrounds, dashboards, and "venue → intelligent space" diagrams.
+- **3D / render style (2025):** futuristic isometric scenes — venues with translucent blue/purple
+  data overlays, neon node markers, holographic dashboards. Used in pitch decks and hero banners.
+  Keep human silhouettes small and outlined; avoid stock photography.
+- **Editorial photography (palette A):** natural light, warm tones, real people, generous
+  negative space. Use for the corporate "About / Team / Press" surfaces.
+
+---
+
+## 6b. Product Taxonomy (the Smart Wi-Fi Marketplace)
+
+The Hoopoe marketplace is organized into **4 product lines**, each with a dedicated accent color
+(see §3.B). When designing any product surface, lead with the line's accent and follow its naming.
+
+### Line 1 — Wi-Fi Smart Services *(B2B · accent green `#6FE36A`)*
+Tools that empower venue operators with advanced hotspot management.
+- **Modern Guest Wi-Fi (WMC)** — Wi-Fi Management Cloud: branded splash pages, auth methods
+  (phone, social, voucher, email), packages, blacklist/whitelist. *"Deal with your hotspot as if
+  you are a Mobile Network Operator."*
+- **Cloud-AAA as a Service** — Carrier-grade RADIUS/AAA. Supports EAP-TLS, EAP-TTLS, PEAP,
+  EAP-SIM, EAP-AKA, EAP-FAST, EAP-GTC, EAP-MD5 and Hotspot 2.0. *Suitable for: Enterprises,
+  Network Operators, Solutions Providers, System Integrators.*
+- **Indoor Tracking & Positioning (ITP)** — Wi-Fi-powered real-time tracking of visitors and
+  assets, **1–3 m accuracy**, no extra hardware. *Suitable for: Malls, Hospitals, Airports,
+  Museums, Exhibitions, Stations, Resorts, Enterprise.*
+- **Wi-Fi in Public Transportation** — Turnkey in-transit Wi-Fi with hardware that also enables
+  fleet tracking, multi-SIM aggregation, failover. *Trains, Buses, Limos & Taxis, Metros,
+  Airplanes.*
+- **Wi-Fi 3rd Party Integrations** — POS & ERP (13+ brands), CRM, DPI, Spotify, reservation &
+  queuing, access control, monitoring.
+
+### Line 2 — Wi-Fi Instant Applications *(B2B2C · accent magenta `#E45BCB`)*
+Location-intelligent apps that **appear automatically on connect, vanish on disconnect — zero
+downloads required**.
+- **Wi-Fi Intelligent Menu** — POS-integrated, branded ordering & loyalty for restaurants,
+  cafes, food courts, drive-thrus.
+- **HEPlex (Hoopoe Entertainment Plex)** — Netflix-like local streaming over venue Wi-Fi:
+  movies, TV, music, multiplayer games. For transportation, hospitality, waiting areas.
+- **Intelligent Mapping & Wayfinding** — 3D interactive indoor maps, multi-floor, built in 1–2
+  weeks. **Live Navigation (Blue Dot)** with sub-meter accuracy + **Dynamic Navigation** without
+  Wi-Fi. Malls, airports, museums, campuses.
+- **Doarak — Intelligent Queuing System** — Hardware-less, paper-less, touch-less queuing with
+  ML-based wait-time predictions and SMS / WhatsApp / voice notifications. Banks, CS centers,
+  post offices, hospitals, clinics, DMV.
+- **Wi-Fi Digital Jukebox** — Guests pick songs from the venue playlist via Wi-Fi.
+  Restaurants, cafes, pubs, clubs.
+
+### Line 3 — Wi-Fi Business Intelligence *(accent cyan `#4FD3E3`)*
+Turning passive Wi-Fi signals into actionable BI — capturing data from **connected and
+unconnected** devices, anonymized.
+- **Basic Wi-Fi Analytics** — Users, devices, sessions (accepted/rejected), live & historical.
+- **Location Analytics & Advanced BI** — Associated/unassociated users, capture rate, dwell-time
+  groups, median visit duration, visitor loyalty, repeat-visitor rate, footfall trends, zone
+  heatmaps, customer journey flows.
+- **Application-Specific User Data** — 360° guest profiles aggregated across Intelligent Menu,
+  HEPlex, Doarak, Jukebox, Navigator, Indoor Tracking.
+- **Deep Packet Inspection (DPI)** — Per-user and aggregate traffic categorization (Facebook,
+  WhatsApp, Streaming, etc.).
+- **Google Analytics & Tracking Pixels** — Embedded directly in captive portals and Instant Apps
+  for unified physical + digital funnels.
+
+### Line 4 — Location-Intelligent Marketing *(accent yellow `#F4D03F`)*
+- **Hoopoe Ad Manager** — *World's first stand-alone Wi-Fi Ad Manager.* Targets Wi-Fi users by
+  location, instant apps used, and behavioral data captured through Wi-Fi. UI modules:
+  Locations, Campaigns, Assets, Audience, Performance, Payments.
+
+---
+
+## 6c. Customer Segments
+
+When sizing a product page or pitch surface, anchor it in one of these six segments. Each gets a
+short pictogram-style icon (24px, 1.5px stroke, palette-A navy or palette-B accent).
+
+| # | Segment | Examples |
+|---|---|---|
+| 1 | **Public Venues** | Malls, museums, cultural centers |
+| 2 | **Food & Beverage** | Restaurants, cafes, food courts, drive-thrus |
+| 3 | **Events & Exhibitions** | Conferences, expos, summits |
+| 4 | **Transportation Hubs** | Airports, metro stations, bus terminals |
+| 5 | **Enterprise Buildings** | Offices, business parks, campuses |
+| 6 | **Customer Service Centers** | Banks, clinics, post offices, DMV |
 
 ---
 
@@ -260,6 +425,27 @@ Button anatomy: height **44 px** (mobile) / **40 px** (desktop), horizontal padd
       "grayLight":   "#E8E3E1",
       "white":       "#FFFFFF"
     },
+    "spatial": {
+      "bgDeep":      "#0A0E14",
+      "bgSurface":   "#11161F",
+      "bgElevated":  "#1A2230",
+      "stroke":      "#2A3344",
+      "textHi":      "#F2F4F8",
+      "textMid":     "#A8B0BE",
+      "textLow":     "#6B7385",
+      "orange":      "#F39C2A",
+      "smartGreen":  "#6FE36A",
+      "instantMagenta": "#E45BCB",
+      "biCyan":      "#4FD3E3",
+      "adYellow":    "#F4D03F",
+      "alertRed":    "#FF5C5C"
+    },
+    "product": {
+      "smartServices":  "#6FE36A",
+      "instantApps":    "#E45BCB",
+      "businessIntel":  "#4FD3E3",
+      "adManager":      "#F4D03F"
+    },
     "text":     { "primary": "#252A35", "secondary": "#252A35CC", "inverse": "#FFFFFF" },
     "surface":  { "default": "#FFFFFF", "muted": "#E8E3E1", "dark": "#252A35" },
     "feedback": { "success": "#2F7D5B", "warning": "#CE8345", "error": "#A5462A", "info": "#252A35" }
@@ -278,17 +464,23 @@ Button anatomy: height **44 px** (mobile) / **40 px** (desktop), horizontal padd
 
 ## 12. Asset inventory in this repo
 
-- `Branding_Manual.pdf` — full 2019 brand manual (logo, type, color, stationery).
+- `Branding_Manual.pdf` — 2019 brand manual (logo, type, color, stationery).
+- `HD - Company Profile (SEPT2025).pdf` — 2025 company profile (positioning, marketplace,
+  product taxonomy, customers, partners, scale, recognitions).
 - `hoopoe-digital-logo.jpeg` — raster horizontal logo (request SVG from brand owner before production use).
 - `fonts/thmanyah-sans/` — UI sans family, 5 weights.
 - `fonts/thmanyah-serif-display/` — display serif, 5 weights.
 - `fonts/thmanyah-seriftext/` — text serif, 5 weights.
 
-> **Action item:** request vector (SVG/AI) versions of the logo and the original Gabriela Stencil
-> license file from the brand owner before the first production release.
+> **Action items:**
+> 1. Request vector (SVG/AI) versions of the logo and the Gabriela Stencil license from the brand owner.
+> 2. Get individual SVG icons for the 18 marketplace products and the 6 customer-segment pictograms.
+> 3. Get the 3D render source files (or commission a render set) for the Spatial Intelligence hero scenes.
+> 4. Confirm the official 2025 hex values for the neon accents — the values in §3.B are
+>    eyedropped from the company profile and should be ratified by the brand team.
 
 ---
 
-*Maintainer note: this guide is derived from the official Hoopoe Digital Brand Manual (2019).
-When the brand evolves, update this file in the same PR as any token changes so engineering and
-design stay in sync.*
+*Maintainer note: this guide is derived from the Hoopoe Digital Brand Manual (2019) and the
+HD Company Profile (Sept 2025). When the brand evolves, update this file in the same PR as any
+token changes so engineering and design stay in sync.*
